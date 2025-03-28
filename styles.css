@@ -1,0 +1,16 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button{
+  padding: 12px 100px;
+  background-color: aquamarine;
+  border: none;
+  border-radius: 8px;
+}
