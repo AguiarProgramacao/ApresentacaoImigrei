@@ -18,6 +18,15 @@ async function obterCotacaoEuro() {
   }
 }
 
+async function atualizarCotacaoNaTela() {
+  const cotacaoEuro = await obterCotacaoEuro();
+  if (cotacaoEuro) {
+    document.getElementById("euroAtual").textContent = `Cotação Atual: R$${cotacaoEuro.toFixed(2).replace('.', ',')}`;
+  } else {
+    document.getElementById("euroAtual").textContent = "Erro ao obter cotação!";
+  }
+}
+
 window.jspdf.jsPDF.API.events.push([
   'addFonts',
   function () {
@@ -52,44 +61,110 @@ async function gerarPDF() {
       doc.text(`R$:${cotacaoEuro.toFixed(2).replace('.', ",")}`, 125, 780);
 
       doc.setFont("Poppins", "normal");
-      doc.setFontSize(40);
+      doc.setFontSize(35);
       doc.setTextColor("#FFF");
-      doc.text(`12x de \nR$:${(5122.78 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1330, 310);
-      doc.text(`12x de R$:${(5122.78 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1595, 310);
-      
-      doc.text(`12x de R$:${(3618.90 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 388);
+      doc.text(`12x de R$:${(5122.78 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 310);
+      doc.text(`12x de R$:${(5122.78 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 310);
+
+      doc.text(`12x de R$:${(3618.90 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 388);
       doc.text(`12x de R$:${(7237.80 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 388);
-      
-      doc.text(`12x de R$:${(3177.61 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 510);
-      doc.text(`12x de R$:${(9352.83 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 510);
-      
-      doc.text(`12x de R$:${(2866.96 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 610);
-      doc.text(`12x de R$:${(11467.85 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 610);
-      
-      doc.text(`12x de R$:${(2716.58 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 710);
-      doc.text(`12x de R$:${(13582.88 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 710);
-      
-      doc.text(`12x de R$:${(2616.32 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 810);
-      doc.text(`12x de R$:${(15697.90 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 810);
-      
-      doc.text(`12x de R$:${(2544.70 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 910);
-      doc.text(`12x de R$:${(17812.92 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 910);
-      
-      doc.text(`12x de R$:${(2490.99 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 1010);
-      doc.text(`12x de R$:${(19927.95 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1010);
-      
-      doc.text(`12x de R$:${(2449.22 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 1100);
-      doc.text(`12x de R$:${(22042.97 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1100);
-      
-      doc.text(`12x de R$:${(2415.80 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1335, 1210);
-      doc.text(`12x de R$:${(24158.00 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1210);
+
+      doc.text(`12x de R$:${(3177.61 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 466);
+      doc.text(`12x de R$:${(9352.83 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 466);
+
+      doc.text(`12x de R$:${(2866.96 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 544);
+      doc.text(`12x de R$:${(11467.85 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 544);
+
+      doc.text(`12x de R$:${(2716.58 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 622);
+      doc.text(`12x de R$:${(13582.88 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 622);
+
+      doc.text(`12x de R$:${(2616.32 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 702);
+      doc.text(`12x de R$:${(15697.90 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 702);
+
+      doc.text(`12x de R$:${(2544.70 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 780);
+      doc.text(`12x de R$:${(17812.92 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 780);
+
+      doc.text(`12x de R$:${(2490.99 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 858);
+      doc.text(`12x de R$:${(19927.95 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 858);
+
+      doc.text(`12x de R$:${(2449.22 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 936);
+      doc.text(`12x de R$:${(22042.97 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 936);
+
+      doc.text(`12x de R$:${(2415.80 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 1014);
+      doc.text(`12x de R$:${(24158.00 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1014);
     }
     if (i === 11) {
       doc.setFontSize(40);
       doc.setTextColor(0, 0, 255);
-      doc.text("Texto personalizado para a página 12", 100, 100);
+      doc.setFont("Poppins", "normal");
+      doc.setFontSize(35);
+      doc.setTextColor("#000");
+      doc.text(`12x de R$:${(2500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 314);
+      doc.text(`12x de R$:${(2500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 314);
+
+      doc.text(`12x de R$:${(1500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 390);
+      doc.text(`12x de R$:${(3000 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 390);
+
+      doc.text(`12x de R$:${(1166.67 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 468);
+      doc.text(`12x de R$:${(3500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 468);
+
+      doc.text(`12x de R$:${(1000 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 544);
+      doc.text(`12x de R$:${(4000 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 544);
+
+      doc.text(`12x de R$:${(900 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 620);
+      doc.text(`12x de R$:${(4500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 620);
+
+      doc.text(`12x de R$:${(833.33 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 695);
+      doc.text(`12x de R$:${(5000 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 695);
+
+      doc.text(`12x de R$:${(785.71 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 770);
+      doc.text(`12x de R$:${(5500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 770);
+
+      doc.text(`12x de R$:${(750 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 847);
+      doc.text(`12x de R$:${(6000 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 847);
+
+      doc.text(`12x de R$:${(722.22 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 923);
+      doc.text(`12x de R$:${(6500 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 923);
+
+      doc.text(`12x de R$:${(700 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 345, 1000);
+      doc.text(`12x de R$:${(7000 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 600, 1000);
+
+      doc.setFont("Poppins", "normal");
+      doc.setFontSize(35);
+      doc.setTextColor("#FFF");
+      doc.text(`12x de R$:${(4315.02 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 314);
+      doc.text(`12x de R$:${(4315.02 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 314);
+
+      doc.text(`12x de R$:${(2811.15 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 390);
+      doc.text(`12x de R$:${(5622.29 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 390);
+
+      doc.text(`12x de R$:${(2309.85 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 468);
+      doc.text(`12x de R$:${(6929.56 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 468);
+
+      doc.text(`12x de R$:${(2509.21 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 544);
+      doc.text(`12x de R$:${(8236.83 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 544);
+
+      doc.text(`12x de R$:${(1908.82 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 620);
+      doc.text(`12x de R$:${(9544.10 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 620);
+
+      doc.text(`12x de R$:${(1808.56 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 695);
+      doc.text(`12x de R$:${(10851.37 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 695);
+
+      doc.text(`12x de R$:${(1736.95 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 770);
+      doc.text(`12x de R$:${(12758.64 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 770);
+
+      doc.text(`12x de R$:${(1683.24 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 847);
+      doc.text(`12x de R$:${(13465.91 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 847);
+
+      doc.text(`12x de R$:${(1641.46 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 923);
+      doc.text(`12x de R$:${(14773.18 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 923);
+
+      doc.text(`12x de R$:${(1608.05 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 1000);
+      doc.text(`12x de R$:${(18608.05 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1000);
     }
   }
 
   doc.save("Apresentacao.pdf");
 }
+
+window.onload = atualizarCotacaoNaTela;

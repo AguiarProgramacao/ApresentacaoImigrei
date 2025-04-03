@@ -6,16 +6,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  
+
   <title>Apresentação Italiana</title>
 </head>
 
 <body>
-  <button onclick="gerarPDF()">Gerar PDF</button>
+  <div class="container">
+    <div class="container-reuniao">
+      <h1>Apresentação para reunião</h1>
+      <p>
+        Ao clicar no botão de gerar PDF, será feito o download da apresentação da reunião, todos os valores estão sendo
+        multiplicado pelo valor do euro atual.
+      </p>
+      <p id="euroAtual"></p>
+      <button onclick="gerarPDF()">Gerar PDF</button>
+    </div>
+    <hr>
+    <div class="container-familia">
+      <h1>Apresentação para família</h1>
+      <p>Faça o preenchimento dos dados da família, coloque o nome da família, a quantidade de requerentes e o tipo de plano que a família quer.</p>
+      <form>
+        <fieldset>
+          <legend>Dados da família</legend>
+          <label>Nome da Família:</label>
+          <input type="text" name="family" id="family" required>
+          <label>Quantidade de Requerentes:</label>
+          <input type="number" name="qntdReq" id="qntdReq">
+          <label>Tipo de Plano:</label>
+          <select id="plano" required>
+            <option value="">Selecionar Plano</option>
+            <option value="start">Plano Start</option>
+            <option value="plus">Plano Plus</option>
+            <option value="premium">Plano Premium</option>
+          </select>
+        </fieldset>
+      </form>
+      <div class="button-container">
+        <button class="btn btn-familia" onclick="pdfFamily()">Gerar PDF</button>
+      </div>
+    </div>
+  </div>
 
   <script src="geral.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
