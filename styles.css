@@ -103,4 +103,10 @@ h1{
   .container{
     flex-direction: column;
   }
+  .container-reuniao{
+    width: 100%;
+  }
+  .container-familia{
+    width: 100%;
+  }
 }
