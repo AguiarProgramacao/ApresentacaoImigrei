@@ -39,9 +39,15 @@ async function pdfFamily() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: "landscape", unit: "px", format: [1920, 1080] });
   const cotacaoEuro = await obterCotacaoEuro();
+  const requerentes = parseInt(document.getElementById("requerentes").value, 10);
 
   if (!cotacaoEuro) {
     alert("Erro ao obter a cotação do Euro!");
+    return;
+  }
+
+  if (isNaN(requerentes) || requerentes < 1 || requerentes > 20) {
+    alert("Por favor, insira um número válido de requerentes entre 1 e 20.");
     return;
   }
 
@@ -57,6 +63,11 @@ async function pdfFamily() {
 
   if (selectedPlan === "premium") {
     planImage = "/assets-family/img-11.png";
+    planValues = [
+      5122.78, 5122.78, 3618.90, 7237.80, 3177.61, 9352.83, 2866.96,
+      11467.85, 2716.58, 13582.88, 2616.32, 15697.90, 2544.70, 17812.92, 2490.99,
+      19927.95, 2449.22, 22042.97, 2415.80, 24158.00
+    ]
   } else if (selectedPlan === "start") {
     planImage = "/assets-family/start.png";
     planValues = [
@@ -98,14 +109,23 @@ async function pdfFamily() {
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
 
-      for (let j = 0; j < planValues.length; j += 2) {
+      for (let j = 0; j < requerentes * 2 && j < planValues.length; j += 2) {
         doc.text(`12x de R$:${(planValues[j] * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 310 + (j / 2) * 78);
         doc.text(`12x de R$:${(planValues[j + 1] * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 310 + (j / 2) * 78);
       }
     }
   }
 
-  doc.save(`Apresentacao-Família-${familyName}.pdf`);
+  const pdfBlob = doc.output("blob");
+  const blobUrl = URL.createObjectURL(pdfBlob);
+  const link = document.createElement("a");
+  link.href = blobUrl;
+  link.download = `Apresentacao-Familia-${familyName}.pdf`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(blobUrl);
+
 }
 
 window.onload = atualizarCotacaoNaTela;

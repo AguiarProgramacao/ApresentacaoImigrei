@@ -164,7 +164,16 @@ async function gerarPDF() {
     }
   }
 
-  doc.save("Apresentacao.pdf");
+  const pdfBlob = doc.output("blob");
+  const blobUrl = URL.createObjectURL(pdfBlob);
+  const link = document.createElement("a");
+  link.href = blobUrl;
+  link.download = "Apresentacao-Reunião.pdf";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(blobUrl);
+
 }
 
 window.onload = atualizarCotacaoNaTela;

@@ -100,6 +100,9 @@ h1{
 }
 
 @media(max-width: 768px){
+  body{
+    height: 100%;
+  }
   .container{
     flex-direction: column;
   }
@@ -108,5 +111,9 @@ h1{
   }
   .container-familia{
     width: 100%;
+  }
+  hr{
+    width: 100%;
+    margin-top: 35px;
   }
 }
