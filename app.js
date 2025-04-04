@@ -93,14 +93,14 @@ async function pdfFamily() {
     doc.addImage(img, 'JPEG', 0, 0, imgWidth, imgHeight);
 
     if (i === 0) {
-      doc.setFont("Poppins", "bolditalic");
+      doc.setFont("Poppins", "light");
       doc.setFontSize(60);
       doc.setTextColor("#FFF");
       doc.text(`${familyName}`, 920, 282);
     }
 
     if (i === 10 && planValues.length) {
-      doc.setFont("Poppins", "normal");
+      doc.setFont("Poppins", "light");
       doc.setFontSize(70);
       doc.setTextColor("#640915");
       doc.text(`R$:${cotacaoEuro.toFixed(2).replace('.', ",")}`, 125, 780);
@@ -109,15 +109,9 @@ async function pdfFamily() {
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
 
-      const r = requerentes - 1;
-
-      const valorRequerente = planValues[r * 2];
-      const valorProcesso = planValues[r * 2 + 1];
-
-      if (valorRequerente !== undefined && valorProcesso !== undefined) {
-        doc.text(`0${requerentes}`, 1155, 310);
-        doc.text(`12x de R$:${(valorRequerente * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 310);
-        doc.text(`12x de R$:${(valorProcesso * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 310);
+      for (let j = 0; j < requerentes * 2 && j < planValues.length; j += 2) {
+        doc.text(`12x de R$:${(planValues[j] * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 310 + (j / 2) * 78);
+        doc.text(`12x de R$:${(planValues[j + 1] * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 310 + (j / 2) * 78);
       }
     }
   }
