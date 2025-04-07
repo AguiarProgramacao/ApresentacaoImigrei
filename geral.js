@@ -45,7 +45,7 @@ async function gerarPDF() {
     return;
   }
 
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 14; i++) {
     const imgSrc = `/assets/img-${i + 1}.png`;
     const img = await carregarImagem(imgSrc);
     const imgWidth = 1920;

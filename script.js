@@ -46,8 +46,8 @@ async function pdfFamily() {
     return;
   }
 
-  if (isNaN(requerentes) || requerentes < 1 || requerentes > 20) {
-    alert("Por favor, insira um número válido de requerentes entre 1 e 20.");
+  if (isNaN(requerentes) || requerentes < 1 || requerentes > 10) {
+    alert("Por favor, insira um número válido de requerentes entre 1 e 10.");
     return;
   }
 
@@ -62,7 +62,7 @@ async function pdfFamily() {
   }
 
   if (selectedPlan === "premium") {
-    planImage = "/assets-family/img-11.png";
+    planImage = "/assets-family/img-10.png";
     planValues = [
       5122.78, 5122.78, 3618.90, 7237.80, 3177.61, 9352.83, 2866.96,
       11467.85, 2716.58, 13582.88, 2616.32, 15697.90, 2544.70, 17812.92, 2490.99,
@@ -83,7 +83,7 @@ async function pdfFamily() {
     ];
   }
 
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 13; i++) {
     const imgSrc = i === 10 ? planImage : `/assets-family/img-${i + 1}.png`;
     const img = await carregarImagem(imgSrc);
     const imgWidth = 1920;
