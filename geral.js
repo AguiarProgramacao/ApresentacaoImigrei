@@ -63,35 +63,35 @@ async function gerarPDF() {
       doc.setFont("Poppins", "normal");
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
-      doc.text(`12x de R$:${(5122.78 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 310);
-      doc.text(`12x de R$:${(5122.78 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 310);
+      doc.text(`18x de R$:${(5122.78 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 310);
+      doc.text(`18x de R$:${(5122.78 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 310);
 
-      doc.text(`12x de R$:${(3618.90 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 388);
-      doc.text(`12x de R$:${(7237.80 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 388);
+      doc.text(`18x de R$:${(3618.90 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 388);
+      doc.text(`18x de R$:${(7237.80 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 388);
 
-      doc.text(`12x de R$:${(3177.61 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 466);
-      doc.text(`12x de R$:${(9352.83 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 466);
+      doc.text(`18x de R$:${(3177.61 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 466);
+      doc.text(`18x de R$:${(9352.83 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 466);
 
-      doc.text(`12x de R$:${(2866.96 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 544);
-      doc.text(`12x de R$:${(11467.85 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 544);
+      doc.text(`18x de R$:${(2866.96 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 544);
+      doc.text(`18x de R$:${(11467.85 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 544);
 
-      doc.text(`12x de R$:${(2716.58 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 622);
-      doc.text(`12x de R$:${(13582.88 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 622);
+      doc.text(`18x de R$:${(2716.58 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 622);
+      doc.text(`18x de R$:${(13582.88 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 622);
 
-      doc.text(`12x de R$:${(2616.32 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 702);
-      doc.text(`12x de R$:${(15697.90 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 702);
+      doc.text(`18x de R$:${(2616.32 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 702);
+      doc.text(`18x de R$:${(15697.90 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 702);
 
-      doc.text(`12x de R$:${(2544.70 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 780);
-      doc.text(`12x de R$:${(17812.92 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 780);
+      doc.text(`18x de R$:${(2544.70 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 780);
+      doc.text(`18x de R$:${(17812.92 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 780);
 
-      doc.text(`12x de R$:${(2490.99 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 858);
-      doc.text(`12x de R$:${(19927.95 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 858);
+      doc.text(`18x de R$:${(2490.99 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 858);
+      doc.text(`18x de R$:${(19927.95 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 858);
 
-      doc.text(`12x de R$:${(2449.22 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 936);
-      doc.text(`12x de R$:${(22042.97 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 936);
+      doc.text(`18x de R$:${(2449.22 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 936);
+      doc.text(`18x de R$:${(22042.97 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 936);
 
-      doc.text(`12x de R$:${(2415.80 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 1014);
-      doc.text(`12x de R$:${(24158.00 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1014);
+      doc.text(`18x de R$:${(2415.80 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 1014);
+      doc.text(`18x de R$:${(24158.00 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 1014);
     }
     if (i === 11) {
       doc.setFontSize(40);
@@ -132,35 +132,35 @@ async function gerarPDF() {
       doc.setFont("Poppins", "normal");
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
-      doc.text(`12x de R$:${(4315.02 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 314);
-      doc.text(`12x de R$:${(4315.02 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 314);
+      doc.text(`14x de R$:${(4315.02 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 314);
+      doc.text(`14x de R$:${(4315.02 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 314);
 
-      doc.text(`12x de R$:${(2811.15 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 390);
-      doc.text(`12x de R$:${(5622.29 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 390);
+      doc.text(`14x de R$:${(2811.15 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 390);
+      doc.text(`14x de R$:${(5622.29 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 390);
 
-      doc.text(`12x de R$:${(2309.85 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 468);
-      doc.text(`12x de R$:${(6929.56 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 468);
+      doc.text(`14x de R$:${(2309.85 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 468);
+      doc.text(`14x de R$:${(6929.56 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 468);
 
-      doc.text(`12x de R$:${(2509.21 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 544);
-      doc.text(`12x de R$:${(8236.83 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 544);
+      doc.text(`14x de R$:${(2509.21 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 544);
+      doc.text(`14x de R$:${(8236.83 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 544);
 
-      doc.text(`12x de R$:${(1908.82 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 620);
-      doc.text(`12x de R$:${(9544.10 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 620);
+      doc.text(`14x de R$:${(1908.82 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 620);
+      doc.text(`14x de R$:${(9544.10 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 620);
 
-      doc.text(`12x de R$:${(1808.56 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 695);
-      doc.text(`12x de R$:${(10851.37 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 695);
+      doc.text(`14x de R$:${(1808.56 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 695);
+      doc.text(`14x de R$:${(10851.37 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 695);
 
-      doc.text(`12x de R$:${(1736.95 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 770);
-      doc.text(`12x de R$:${(12758.64 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 770);
+      doc.text(`14x de R$:${(1736.95 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 770);
+      doc.text(`14x de R$:${(12758.64 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 770);
 
-      doc.text(`12x de R$:${(1683.24 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 847);
-      doc.text(`12x de R$:${(13465.91 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 847);
+      doc.text(`14x de R$:${(1683.24 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 847);
+      doc.text(`14x de R$:${(13465.91 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 847);
 
-      doc.text(`12x de R$:${(1641.46 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 923);
-      doc.text(`12x de R$:${(14773.18 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 923);
+      doc.text(`14x de R$:${(1641.46 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 923);
+      doc.text(`14x de R$:${(14773.18 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 923);
 
-      doc.text(`12x de R$:${(1608.05 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 1000);
-      doc.text(`12x de R$:${(18608.05 * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 1000);
+      doc.text(`14x de R$:${(1608.05 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1338, 1000);
+      doc.text(`14x de R$:${(18608.05 * cotacaoEuro / 14).toFixed(2).replace('.', ',')}`, 1600, 1000);
     }
   }
 
@@ -168,7 +168,7 @@ async function gerarPDF() {
   const blobUrl = URL.createObjectURL(pdfBlob);
   const link = document.createElement("a");
   link.href = blobUrl;
-  link.download = "Apresentacao-Reunião.pdf";
+  link.download = "Apresentação-Reunião.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

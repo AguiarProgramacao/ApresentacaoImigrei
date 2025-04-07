@@ -114,10 +114,14 @@ async function pdfFamily() {
       const valorRequerente = planValues[r * 2];
       const valorProcesso = planValues[r * 2 + 1];
 
+      let parcelas = 12;
+      if (selectedPlan === "plus") parcelas = 14;
+      if (selectedPlan === "premium") parcelas = 18;
+
       if (valorRequerente !== undefined && valorProcesso !== undefined) {
         doc.text(`0${requerentes}`, 1155, 310);
-        doc.text(`12x de R$:${(valorRequerente * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1338, 310);
-        doc.text(`12x de R$:${(valorProcesso * cotacaoEuro / 12).toFixed(2).replace('.', ',')}`, 1600, 310);
+        doc.text(`${parcelas}x de R$:${(valorRequerente * cotacaoEuro / parcelas).toFixed(2).replace('.', ',')}`, 1338, 310);
+        doc.text(`${parcelas}x de R$:${(valorProcesso * cotacaoEuro / parcelas).toFixed(2).replace('.', ',')}`, 1600, 310);
       }
     }
   }
