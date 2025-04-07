@@ -84,7 +84,7 @@ async function pdfFamily() {
   }
 
   for (let i = 0; i < 13; i++) {
-    const imgSrc = i === 10 ? planImage : `/assets-family/img-${i + 1}.png`;
+    const imgSrc = i === 9 ? planImage : `/assets-family/img-${i + 1}.png`;
     const img = await carregarImagem(imgSrc);
     const imgWidth = 1920;
     const imgHeight = 1080;
@@ -99,7 +99,7 @@ async function pdfFamily() {
       doc.text(`${familyName}`, 920, 282);
     }
 
-    if (i === 10 && planValues.length) {
+    if (i === 9 && planValues.length) {
       doc.setFont("Poppins", "normal");
       doc.setFontSize(70);
       doc.setTextColor("#640915");

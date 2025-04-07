@@ -54,7 +54,7 @@ async function gerarPDF() {
     if (i !== 0) doc.addPage();
     doc.addImage(img, 'JPEG', 0, 0, imgWidth, imgHeight);
 
-    if (i === 10) {
+    if (i === 9) {
       doc.setFont("Poppins", "light");
       doc.setFontSize(70);
       doc.setTextColor("#640915");
@@ -93,7 +93,7 @@ async function gerarPDF() {
       doc.text(`18x de R$:${(2415.80 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1338, 1014);
       doc.text(`18x de R$:${(24158.00 * cotacaoEuro / 18).toFixed(2).replace('.', ',')}`, 1600, 1014);
     }
-    if (i === 11) {
+    if (i === 10) {
       doc.setFontSize(40);
       doc.setTextColor(0, 0, 255);
       doc.setFont("Poppins", "normal");
