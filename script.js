@@ -62,20 +62,20 @@ async function pdfFamily() {
   }
 
   if (selectedPlan === "premium") {
-    planImage = "/assets-family/img-10.png";
+    planImage = "/assets-family/img-10.jpg";
     planValues = [
       5122.78, 5122.78, 3618.90, 7237.80, 3177.61, 9352.83, 2866.96,
       11467.85, 2716.58, 13582.88, 2616.32, 15697.90, 2544.70, 17812.92, 2490.99,
       19927.95, 2449.22, 22042.97, 2415.80, 24158.00
     ]
   } else if (selectedPlan === "start") {
-    planImage = "/assets-family/start.png";
+    planImage = "/assets-family/start.jpg";
     planValues = [
       2500, 2500, 1500, 3000, 1166.67, 3500, 1000, 4000, 900, 4500,
       833.33, 5000, 785.71, 5500, 750, 6000, 722.22, 6500, 700, 7000
     ];
   } else if (selectedPlan === "plus") {
-    planImage = "/assets-family/plus.png";
+    planImage = "/assets-family/plus.jpg";
     planValues = [
       4315.02, 4315.02, 2811.15, 5622.29, 2309.85, 6929.56, 2509.21, 8236.83,
       1908.82, 9544.10, 1808.56, 10851.37, 1736.95, 12758.64, 1683.24, 13465.91,
@@ -84,13 +84,11 @@ async function pdfFamily() {
   }
 
   for (let i = 0; i < 13; i++) {
-    const imgSrc = i === 9 ? planImage : `/assets-family/img-${i + 1}.png`;
+    const imgSrc = i === 9 ? planImage : `/assets-family/img-${i + 1}.jpg`;
     const img = await carregarImagem(imgSrc);
-    const imgWidth = 1920;
-    const imgHeight = 1080;
 
     if (i !== 0) doc.addPage();
-    doc.addImage(img, 'JPEG', 0, 0, imgWidth, imgHeight);
+    doc.addImage(img, 'JPEG', 0, 0, 1920, 1080, undefined, 'SLOW');
 
     if (i === 0) {
       doc.setFont("Poppins", "bolditalic");

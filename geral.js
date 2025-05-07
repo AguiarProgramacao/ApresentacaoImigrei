@@ -46,13 +46,11 @@ async function gerarPDF() {
   }
 
   for (let i = 0; i < 14; i++) {
-    const imgSrc = `/assets/img-${i + 1}.png`;
+    const imgSrc = `/assets/img-${i + 1}.jpg`;
     const img = await carregarImagem(imgSrc);
-    const imgWidth = 1920;
-    const imgHeight = 1080;
 
     if (i !== 0) doc.addPage();
-    doc.addImage(img, 'JPEG', 0, 0, imgWidth, imgHeight);
+    doc.addImage(img, 'JPEG', 0, 0, 1920, 1080, undefined, 'SLOW');
 
     if (i === 9) {
       doc.setFont("Poppins", "light");
