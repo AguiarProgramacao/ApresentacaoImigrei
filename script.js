@@ -111,27 +111,29 @@ async function pdfFamily() {
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
 
-      let valorRequerente, valorProcesso;
+      let valorTotalReais = 0;
+      let valorPorRequerente = 0;
 
       // Se campos personalizados forem preenchidos, usa eles
       if (!isNaN(valorPrimeiroInput) && !isNaN(valorAdicionalInput)) {
         const valorTotalEuro = valorPrimeiroInput + (requerentes - 1) * valorAdicionalInput;
-        valorRequerente = valorTotalEuro * cotacaoEuro;
-        valorProcesso = valorRequerente;
+        valorTotalReais = valorTotalEuro * cotacaoEuro;
+        valorPorRequerente = valorTotalReais / requerentes;
       } else {
         const r = requerentes - 1;
-        valorRequerente = planValues[r * 2] * cotacaoEuro;
-        valorProcesso = planValues[r * 2 + 1] * cotacaoEuro;
+        const valorTotalEuro = planValues[r * 2 + 1];
+        valorTotalReais = valorTotalEuro * cotacaoEuro;
+        valorPorRequerente = valorTotalReais / requerentes;
       }
 
       let parcelas = 12;
       if (selectedPlan === "plus") parcelas = 14;
       if (selectedPlan === "premium") parcelas = 18;
 
-      if (valorRequerente && valorProcesso) {
+      if (valorTotalReais && valorPorRequerente) {
         doc.text(`0${requerentes}`, 1155, 310);
-        doc.text(`${parcelas}x de R$:${(valorRequerente / parcelas).toFixed(2).replace('.', ',')}`, 1338, 310);
-        doc.text(`${parcelas}x de R$:${(valorProcesso / parcelas).toFixed(2).replace('.', ',')}`, 1600, 310);
+        doc.text(`${parcelas}x de R$:${(valorPorRequerente / parcelas).toFixed(2).replace('.', ',')}`, 1338, 310);
+        doc.text(`${parcelas}x de R$:${(valorTotalReais / parcelas).toFixed(2).replace('.', ',')}`, 1600, 310);
       }
     }
   }
