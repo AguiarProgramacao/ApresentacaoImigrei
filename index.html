@@ -29,14 +29,19 @@
     <hr>
     <div class="container-familia">
       <h1>Apresentação para família</h1>
-      <p>Faça o preenchimento dos dados da família, coloque o nome da família, a quantidade de requerentes e o tipo de plano que a família quer.</p>
+      <p>Faça o preenchimento dos dados da família, coloque o nome da família, a quantidade de requerentes e o tipo de
+        plano que a família quer.</p>
       <form>
         <fieldset>
           <legend>Dados da família</legend>
           <label>Nome da Família:</label>
-          <input type="text" name="family" id="family" required>
+          <input type="text" name="family" id="family" placeholder="Ex: Michelon" required>
           <label>Quantidade de Requerente:</label>
           <input type="number" id="requerentes" min="1" max="10" value="1">
+          <label>Valor do 1º Requerente (€):</label>
+          <input type="number" id="valorPrimeiro" step="0.01" min="0" placeholder="Ex: 2500">
+          <label>Valor Adicional por Requerente (€):</label>
+          <input type="number" id="valorAdicional" step="0.01" min="0" placeholder="Ex: 500">
           <label>Tipo de Plano:</label>
           <select id="plano" required>
             <option value="">Selecionar Plano</option>

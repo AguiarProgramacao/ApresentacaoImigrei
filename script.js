@@ -53,6 +53,10 @@ async function pdfFamily() {
 
   const familyName = document.getElementById("family").value.trim();
   const selectedPlan = document.getElementById("plano").value;
+
+  const valorPrimeiroInput = parseFloat(document.getElementById("valorPrimeiro").value);
+  const valorAdicionalInput = parseFloat(document.getElementById("valorAdicional").value);
+
   let planImage = "/assets-family/img-10.png";
   let planValues = [];
 
@@ -67,7 +71,7 @@ async function pdfFamily() {
       5122.78, 5122.78, 3618.90, 7237.80, 3177.61, 9352.83, 2866.96,
       11467.85, 2716.58, 13582.88, 2616.32, 15697.90, 2544.70, 17812.92, 2490.99,
       19927.95, 2449.22, 22042.97, 2415.80, 24158.00
-    ]
+    ];
   } else if (selectedPlan === "start") {
     planImage = "/assets-family/start.jpg";
     planValues = [
@@ -97,7 +101,7 @@ async function pdfFamily() {
       doc.text(`${familyName}`, 920, 282);
     }
 
-    if (i === 9 && planValues.length) {
+    if (i === 9) {
       doc.setFont("Poppins", "normal");
       doc.setFontSize(70);
       doc.setTextColor("#640915");
@@ -107,19 +111,27 @@ async function pdfFamily() {
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
 
-      const r = requerentes - 1;
+      let valorRequerente, valorProcesso;
 
-      const valorRequerente = planValues[r * 2];
-      const valorProcesso = planValues[r * 2 + 1];
+      // Se campos personalizados forem preenchidos, usa eles
+      if (!isNaN(valorPrimeiroInput) && !isNaN(valorAdicionalInput)) {
+        const valorTotalEuro = valorPrimeiroInput + (requerentes - 1) * valorAdicionalInput;
+        valorRequerente = valorTotalEuro * cotacaoEuro;
+        valorProcesso = valorRequerente;
+      } else {
+        const r = requerentes - 1;
+        valorRequerente = planValues[r * 2] * cotacaoEuro;
+        valorProcesso = planValues[r * 2 + 1] * cotacaoEuro;
+      }
 
       let parcelas = 12;
       if (selectedPlan === "plus") parcelas = 14;
       if (selectedPlan === "premium") parcelas = 18;
 
-      if (valorRequerente !== undefined && valorProcesso !== undefined) {
+      if (valorRequerente && valorProcesso) {
         doc.text(`0${requerentes}`, 1155, 310);
-        doc.text(`${parcelas}x de R$:${(valorRequerente * cotacaoEuro / parcelas).toFixed(2).replace('.', ',')}`, 1338, 310);
-        doc.text(`${parcelas}x de R$:${(valorProcesso * cotacaoEuro / parcelas).toFixed(2).replace('.', ',')}`, 1600, 310);
+        doc.text(`${parcelas}x de R$:${(valorRequerente / parcelas).toFixed(2).replace('.', ',')}`, 1338, 310);
+        doc.text(`${parcelas}x de R$:${(valorProcesso / parcelas).toFixed(2).replace('.', ',')}`, 1600, 310);
       }
     }
   }
@@ -133,7 +145,6 @@ async function pdfFamily() {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(blobUrl);
-
 }
 
 window.onload = atualizarCotacaoNaTela;
