@@ -184,11 +184,11 @@ async function pdfFamily() {
 
       const valorDinheiro = valorTotalEuro * cotacaoEuro;
 
-      let y = 190;
+      let y = 440;
       const espaco = 50;
 
       if (isDinheiro) {
-        doc.text(`50% na assinatura do contrato = R$ ${(valorDinheiro * 0.5).toFixed(2).replace('.', ',')}`, 980, y += 250);
+        doc.text(`50% na assinatura do contrato = R$ ${(valorDinheiro * 0.5).toFixed(2).replace('.', ',')}`, 980, y);
         y += espaco;
         doc.text(`25% após 6 meses = R$ ${(valorDinheiro * 0.25).toFixed(2).replace('.', ',')}`, 980, y);
         y += espaco;
