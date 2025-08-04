@@ -35,11 +35,24 @@ async function atualizarCotacaoNaTela() {
   }
 }
 
+function toggleSanfona(tipo) {
+  const sanfona = document.getElementById(`sanfona-${tipo}`);
+  const checkbox = document.getElementById(tipo);
+
+  if (checkbox.checked) {
+    sanfona.style.display = "block";
+  } else {
+    sanfona.style.display = "none";
+  }
+}
+
 async function pdfFamily() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: "landscape", unit: "px", format: [1920, 1080] });
+
   const cotacaoEuro = await obterCotacaoEuro();
   const requerentes = parseInt(document.getElementById("requerentes").value, 10);
+  const isDinheiro = document.getElementById("dinheiro").checked;
 
   if (!cotacaoEuro) {
     alert("Erro ao obter a cotação do Euro!");
@@ -53,17 +66,42 @@ async function pdfFamily() {
 
   const familyName = document.getElementById("family").value.trim();
   const selectedPlan = document.getElementById("plano").value;
-
   const valorPrimeiroInput = parseFloat(document.getElementById("valorPrimeiro").value);
   const valorAdicionalInput = parseFloat(document.getElementById("valorAdicional").value);
-
-  let planImage = "/assets-family/img-10.png";
-  let planValues = [];
 
   if (!familyName || !selectedPlan) {
     alert("Por favor, preencha o nome e selecione um plano antes de gerar o PDF.");
     return;
   }
+
+  // Tabelas de juros
+  const jurosCartao = {
+    1: 0, 2: 0.0201, 3: 0.0302, 4: 0.0403, 5: 0.0504, 6: 0.0606,
+    7: 0.0960, 8: 0.1065, 9: 0.1172, 10: 0.1279, 11: 0.1387, 12: 0.1477,
+  };
+
+  const jurosBoleto = {
+    1: 0, 2: 0.0250, 3: 0.0375, 4: 0.0500, 5: 0.0625, 6: 0.0750,
+    7: 0.0900, 8: 0.1050, 9: 0.1200, 10: 0.1350, 11: 0.1500, 12: 0.1650,
+    13: 0.1750, 14: 0.1850, 15: 0.1950, 16: 0.2050, 17: 0.2150, 18: 0.2250,
+  };
+
+  const isCartao = document.getElementById("cartao").checked;
+  const isBoleto = document.getElementById("boleto").checked;
+
+  let parcelasSelecionadas = 1;
+  let juros = 0;
+
+  if (isCartao) {
+    parcelasSelecionadas = parseInt(document.getElementById("parcelas-cartao").value, 10);
+    juros = jurosCartao[parcelasSelecionadas] || 0;
+  } else if (isBoleto) {
+    parcelasSelecionadas = parseInt(document.getElementById("parcelas-boleto").value, 10);
+    juros = jurosBoleto[parcelasSelecionadas] || 0;
+  }
+
+  let planImage = "/assets-family/img-10.png";
+  let planValues = [];
 
   if (selectedPlan === "premium") {
     planImage = "/assets-family/img-10.jpg";
@@ -111,29 +149,73 @@ async function pdfFamily() {
       doc.setFontSize(35);
       doc.setTextColor("#FFF");
 
-      let valorTotalReais = 0;
-      let valorPorRequerente = 0;
+      let valorTotalEuro;
 
-      // Se campos personalizados forem preenchidos, usa eles
       if (!isNaN(valorPrimeiroInput) && !isNaN(valorAdicionalInput)) {
-        const valorTotalEuro = valorPrimeiroInput + (requerentes - 1) * valorAdicionalInput;
-        valorTotalReais = valorTotalEuro * cotacaoEuro;
-        valorPorRequerente = valorTotalReais / requerentes;
+        valorTotalEuro = valorPrimeiroInput + (requerentes - 1) * valorAdicionalInput;
       } else {
         const r = requerentes - 1;
-        const valorTotalEuro = planValues[r * 2 + 1];
-        valorTotalReais = valorTotalEuro * cotacaoEuro;
-        valorPorRequerente = valorTotalReais / requerentes;
+        valorTotalEuro = planValues[r * 2 + 1];
       }
 
-      let parcelas = 12;
-      if (selectedPlan === "plus") parcelas = 14;
-      if (selectedPlan === "premium") parcelas = 18;
+      const valorComJurosEuro = valorTotalEuro * (1 + juros);
+      const valorTotalReais = valorComJurosEuro * cotacaoEuro;
+      const valorPorRequerente = valorTotalReais / requerentes;
+      const valorParcela = valorTotalReais / parcelasSelecionadas;
 
-      if (valorTotalReais && valorPorRequerente) {
-        doc.text(`0${requerentes}`, 1155, 310);
-        doc.text(`${parcelas}x de R$:${(valorPorRequerente / parcelas).toFixed(2).replace('.', ',')}`, 1338, 310);
-        doc.text(`${parcelas}x de R$:${(valorTotalReais / parcelas).toFixed(2).replace('.', ',')}`, 1600, 310);
+      doc.text(`0${requerentes}`, 1155, 310);
+      doc.text(`${parcelasSelecionadas}x de R$:${(valorPorRequerente / parcelasSelecionadas).toFixed(2).replace('.', ',')}`, 1338, 310);
+      doc.text(`${parcelasSelecionadas}x de R$:${valorParcela.toFixed(2).replace('.', ',')}`, 1600, 310);
+    }
+
+    if (i === 10) {
+      doc.setFont("Poppins", "normal");
+      doc.setFontSize(38);
+      doc.setTextColor("#640915");
+
+      let valorTotalEuro;
+
+      if (!isNaN(valorPrimeiroInput) && !isNaN(valorAdicionalInput)) {
+        valorTotalEuro = valorPrimeiroInput + (requerentes - 1) * valorAdicionalInput;
+      } else {
+        const r = requerentes - 1;
+        valorTotalEuro = planValues[r * 2 + 1];
+      }
+
+      const valorDinheiro = valorTotalEuro * cotacaoEuro;
+
+      let y = 190;
+      const espaco = 50;
+
+      if (isDinheiro) {
+        doc.text(`50% na assinatura do contrato = R$ ${(valorDinheiro * 0.5).toFixed(2).replace('.', ',')}`, 980, y += 250);
+        y += espaco;
+        doc.text(`25% após 6 meses = R$ ${(valorDinheiro * 0.25).toFixed(2).replace('.', ',')}`, 980, y);
+        y += espaco;
+        doc.text(`25% após mais 6 meses = R$ ${(valorDinheiro * 0.25).toFixed(2).replace('.', ',')}`, 980, y);
+        y += espaco * 2;
+      }
+
+      if (isCartao) {
+        const parcelas = parseInt(document.getElementById("parcelas-cartao").value, 10);
+        const jurosSel = jurosCartao[parcelas] ?? 0;
+        const valorTotal = valorTotalEuro * (1 + jurosSel);
+        const valorReal = valorTotal * cotacaoEuro;
+        const valorParcela = valorReal / parcelas;
+
+        doc.text(`Parcelado no cartão em ${parcelas}x = R$ ${valorParcela.toFixed(2).replace('.', ',')}`, 980, y);
+        y += espaco;
+      }
+
+      if (isBoleto) {
+        const parcelas = parseInt(document.getElementById("parcelas-boleto").value, 10);
+        const jurosSel = jurosBoleto[parcelas] ?? 0;
+        const valorTotal = valorTotalEuro * (1 + jurosSel);
+        const valorReal = valorTotal * cotacaoEuro;
+        const valorParcela = valorReal / parcelas;
+
+        doc.text(`Boleto bancário em ${parcelas}x = R$ ${valorParcela.toFixed(2).replace('.', ',')}`, 980, y);
+        y += espaco;
       }
     }
   }

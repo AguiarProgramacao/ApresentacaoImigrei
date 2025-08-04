@@ -29,8 +29,10 @@
     <hr>
     <div class="container-familia">
       <h1>Apresentação para família</h1>
-      <p>Faça o preenchimento dos dados do formulário, coloque o nome da família, a quantidade de requerentes, O valor 1º requerente, Valor Adicional por Requerente e o tipo de plano que a família quer.</p>
-      <p>Caso queira manter o padrão anterior, não faça o preenchimento dos valores dos requerentes, apenas nome da família, quantidade de requerente e Tipo de plano</p>
+      <p>Faça o preenchimento dos dados do formulário, coloque o nome da família, a quantidade de requerentes, O valor
+        1º requerente, Valor Adicional por Requerente e o tipo de plano que a família quer.</p>
+      <p>Caso queira manter o padrão anterior, não faça o preenchimento dos valores dos requerentes, apenas nome da
+        família, quantidade de requerente e Tipo de plano</p>
       <form>
         <fieldset>
           <legend>Dados da família</legend>
@@ -49,6 +51,23 @@
             <option value="plus">Plano Plus</option>
             <option value="premium">Plano Premium</option>
           </select>
+          <div class="pagamento-opcoes">
+            <h2>Forma de Pagamento</h2>
+
+            <label><input type="checkbox" id="cartao" onchange="toggleSanfona('cartao')"> Cartão</label>
+            <div id="sanfona-cartao" class="sanfona">
+              <label for="parcelas-cartao">Parcelas (Cartão):</label>
+              <input type="number" id="parcelas-cartao" min="1" max="12" placeholder="Ex: 6">
+            </div>
+
+            <label><input type="checkbox" id="boleto" onchange="toggleSanfona('boleto')"> Boleto</label>
+            <div id="sanfona-boleto" class="sanfona">
+              <label for="parcelas-boleto">Parcelas (Boleto):</label>
+              <input type="number" id="parcelas-boleto" min="1" max="12" placeholder="Ex: 3">
+            </div>
+
+            <label><input type="checkbox" id="dinheiro" onchange="toggleSanfona('dinheiro')"> Dinheiro</label>
+          </div>
         </fieldset>
       </form>
       <div class="button-container">
