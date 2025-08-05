@@ -53,6 +53,7 @@ async function pdfFamily() {
   const cotacaoEuro = await obterCotacaoEuro();
   const requerentes = parseInt(document.getElementById("requerentes").value, 10);
   const isDinheiro = document.getElementById("dinheiro").checked;
+  const IOF = 0.035;
 
   if (!cotacaoEuro) {
     alert("Erro ao obter a cotação do Euro!");
@@ -158,7 +159,7 @@ async function pdfFamily() {
         valorTotalEuro = planValues[r * 2 + 1];
       }
 
-      const valorComJurosEuro = valorTotalEuro * (1 + juros);
+      const valorComJurosEuro = valorTotalEuro * (1 + juros + (isCartao ? IOF : 0));
       const valorTotalReais = valorComJurosEuro * cotacaoEuro;
       const valorPorRequerente = valorTotalReais / requerentes;
       const valorParcela = valorTotalReais / parcelasSelecionadas;
@@ -199,7 +200,7 @@ async function pdfFamily() {
       if (isCartao) {
         const parcelas = parseInt(document.getElementById("parcelas-cartao").value, 10);
         const jurosSel = jurosCartao[parcelas] ?? 0;
-        const valorTotal = valorTotalEuro * (1 + jurosSel);
+        const valorTotal = valorTotalEuro * (1 + jurosSel + IOF);
         const valorReal = valorTotal * cotacaoEuro;
         const valorParcela = valorReal / parcelas;
 
