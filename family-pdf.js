@@ -55,11 +55,6 @@ async function pdfFamily() {
     return;
   }
 
-  if (isNaN(requerentes) || requerentes < 1 || requerentes > 10) {
-    alert("Por favor, insira um número válido de requerentes entre 1 e 10.");
-    return;
-  }
-
   const familyName = document.getElementById("family").value.trim();
   const selectedPlan = document.getElementById("plano").value;
   const valorPrimeiroInput = parseFloat(document.getElementById("valorPrimeiro").value);
